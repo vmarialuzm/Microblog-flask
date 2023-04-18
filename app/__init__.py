@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from .config import Config
-from flask_sqlalchemy import SQLAlchemy
+#from flask_sqlalchemy import SQLAlchemy
+from app.db import db
 from flask_migrate import Migrate
 
 from app.models.posts import Post
@@ -14,7 +15,7 @@ def create_app():
     Bootstrap(app)
     app.config.from_object(Config)
 
-    db = SQLAlchemy(app)
+    #db = SQLAlchemy(app)
     migrate = Migrate(app, db)
 
     return app

@@ -10,11 +10,23 @@
   </div>
   <h1>Bienvenido!</h1>
 
-    <h3>Hola, {{ current_user.username }}!</h3>
-    <p>Gracias por iniciar sesión</p>
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} Postea: <b>{{ post.body }}</b></p></div>
-    {% endfor %}
+    <h3>Hola, <a href="{{url_for('profile')}}">{{ current_user.username }}!</a> - <a href="{{url_for('post')}}">crea un nuevo post</a></h3>
+    <div class="container">
+      {% for post in posts %}
+      <a href="{{url_for('post_detail',id=post.id)}}">
+        <div class="container_post">
+          <div class="post_image">
+            <img src="https://secure.gravatar.com/avatar/{{current_user.username}}?d=identicon" alt="">
+          </div>
+          <div class="post_body">
+            <p class="username">{{ post.author.username }}</p> 
+            <p class="body">{{ post.body }}</p>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+   
     
 {% endblock %}
 
